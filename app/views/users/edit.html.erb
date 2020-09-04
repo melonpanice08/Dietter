@@ -1,2 +1,40 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="text-center">
+  <h1>設定</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :name, '名前' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :target_weight, '目標体重' %>
+        <%= f.number_field :target_weight, step: "0.1", class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :target_bodyfat, '目標体脂肪率' %>
+        <%= f.number_field :target_bodyfat, step: "0.1", class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <% if @user.image? %>
+          <%= image_tag @user.image.thumb.url %>
+       <% else %>
+          <%= image_tag "/assets/default.jpg", :size => '100x100' %>
+       <% end %>
+          <button type="button" class="btn btn-outline-secondary rounded-pill">
+             <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
+          </button>
+      </div>
+
+      <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>

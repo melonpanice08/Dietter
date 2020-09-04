@@ -5,12 +5,19 @@
         <h3 class="card-title"><%= @user.name %></h3>
       </div>
       <div class="card-body">
+        <% if @user.image? %>
+          <%= image_tag @user.image.thumb.url %>
+       <% else %>
+          <%= image_tag "/assets/default.jpg", :size => '100x100' %>
+       <% end %>
+        <p class="card-title">目標体重: <%= @user.target_weight %>kg</p>
+        <p class="card-title">目標体脂肪率: <%= @user.target_bodyfat %>%</p>
       </div>
     </div>
   </aside>
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="#" class="nav-link">n入力</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">入力</a></li>
       <li class="nav-item"><a href="#" class="nav-link">カレンダー</a></li>
       <li class="nav-item"><a href="#" class="nav-link">グラフ</a></li>
     </ul>
